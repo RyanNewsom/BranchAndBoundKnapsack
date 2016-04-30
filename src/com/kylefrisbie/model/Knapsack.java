@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Knapsack {
     private ArrayList<Node> mNodes;
+    private Node mBestNode;
     private ArrayList<Node> mPossibleNodesForExploration;
     private ArrayList<Item> mItems;
     private int mMaximumWeightForSack;
@@ -24,5 +25,13 @@ public class Knapsack {
     public Knapsack(int maxWeightForSack, ArrayList<Item> availableItems){
         mMaximumWeightForSack = maxWeightForSack;
         mItems = availableItems;
+    }
+
+    public String determineOptimalItemsForKnapsackProblem(){
+        if(mBestNode == null){
+            return "Error, no best node found";
+        } else{
+            return mBestNode.toString();
+        }
     }
 }

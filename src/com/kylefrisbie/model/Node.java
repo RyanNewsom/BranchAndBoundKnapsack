@@ -60,4 +60,9 @@ public class Node {
     public void setRightChild(Node mRightChild) {
         this.mRightChild = mRightChild;
     }
+
+    @Override
+    public String toString(){
+        return "The highest possible profit is: " + mProfit + "Using these items: " + mItemsUsed.toString();
+    }
 }

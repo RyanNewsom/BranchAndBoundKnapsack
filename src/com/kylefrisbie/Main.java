@@ -22,6 +22,9 @@ public class Main {
         //ask knapsack to give me the optimal decision
         takeInUserInput(args[0]);
         Knapsack knapsack = new Knapsack(mMaxWeight, mItems);
+        String result = knapsack.determineOptimalItemsForKnapsackProblem();
+        System.out.println(result);
+
     }
 
     private static void takeInUserInput(String arg) {

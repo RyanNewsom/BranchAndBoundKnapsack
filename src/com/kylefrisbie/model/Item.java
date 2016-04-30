@@ -14,6 +14,12 @@ public class Item {
      */
     private Item(){}
 
+    /**
+     * Constructor
+     * @param itemId - the id for the item
+     * @param price - the price for the item
+     * @param weight - the weight for the item
+     */
     public Item(int itemId, int price, int weight){
         mItemId = itemId;
         mPrice = price;
@@ -37,11 +43,11 @@ public class Item {
         this.mWeight = mWeight;
     }
 
-    public double getpricePerWeight() {
+    public double getPricePerWeight() {
         return mpricePerWeight;
     }
 
-    public void setpricePerWeight(double mpricePerWeight) {
+    public void setPricePerWeight(double mpricePerWeight) {
         this.mpricePerWeight = mpricePerWeight;
     }
 }
