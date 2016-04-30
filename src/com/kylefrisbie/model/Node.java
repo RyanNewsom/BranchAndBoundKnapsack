@@ -10,8 +10,8 @@ public class Node {
     private Node mLeftChild;
     private Node mRightChild;
     private int mMaximumPossibleProfit;
-    private int mMaximumPossibleWeight;
     private int mProfit;
+    private int mWeight;
 
 
     public int getMaximumPossibleProfit() {
@@ -20,14 +20,6 @@ public class Node {
 
     public void setMaximumPossibleProfit(int mMaximumPossibleProfit) {
         this.mMaximumPossibleProfit = mMaximumPossibleProfit;
-    }
-
-    public int getMaximumPossibleWeight() {
-        return mMaximumPossibleWeight;
-    }
-
-    public void setMaximumPossibleWeight(int mMaximumPossibleWeight) {
-        this.mMaximumPossibleWeight = mMaximumPossibleWeight;
     }
 
     public ArrayList<Integer> getItemsUsed() {
@@ -44,6 +36,14 @@ public class Node {
 
     public void setProfit(int mProfit) {
         this.mProfit = mProfit;
+    }
+
+    public int getWeight() {
+        return mWeight;
+    }
+
+    public void setWeight(int mWeight) {
+        this.mWeight = mWeight;
     }
 
     public Node getLeftChild() {

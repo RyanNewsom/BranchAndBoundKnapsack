@@ -24,9 +24,12 @@ public class Main {
         Knapsack knapsack = new Knapsack(mMaxWeight, mItems);
         String result = knapsack.determineOptimalItemsForKnapsackProblem();
         System.out.println(result);
-
     }
 
+    /**
+     * Populated the ArrayList of Items and gets the max weight possible for the Sack
+     * @param arg - file name
+     */
     private static void takeInUserInput(String arg) {
         File file = new File(arg);
         int itemNumber = 1;

@@ -29,7 +29,7 @@ public class Knapsack {
 
     /**
      * Determines the optimal items to use for the Knapsack Problem
-     * @return - the best option for the partcular instance
+     * @return - the best option for the particular instance
      */
     public String determineOptimalItemsForKnapsackProblem(){
         if(mBestNode == null){
