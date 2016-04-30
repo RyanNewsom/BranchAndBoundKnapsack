@@ -13,9 +13,9 @@ import java.util.Scanner;
  * This program does the Knapsack Problem using the Branch and Bound technique
  */
 public class Main {
+    private static ArrayList<Item> mItems = new ArrayList<>();
     private static int mMaxWeight;
     private static int mNumberOfItems;//[TODO] remove this if it's not in use @ finish
-    private static ArrayList<Item> mItems = new ArrayList<>();
 
     public static void main(String[] args) {
         //Create a knapsack instance

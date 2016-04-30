@@ -6,10 +6,10 @@ import java.util.ArrayList;
  * This is the instance of the Knapsack problem
  */
 public class Knapsack {
-    private ArrayList<Node> mNodes;
+    private ArrayList<Node> mNodes = new ArrayList<>();
+    private ArrayList<Node> mPossibleNodesForExploration = new ArrayList<>();
+    private ArrayList<Item> mItems = new ArrayList<>();
     private Node mBestNode;
-    private ArrayList<Node> mPossibleNodesForExploration;
-    private ArrayList<Item> mItems;
     private int mMaximumWeightForSack;
 
     /**
@@ -27,6 +27,10 @@ public class Knapsack {
         mItems = availableItems;
     }
 
+    /**
+     * Determines the optimal items to use for the Knapsack Problem
+     * @return - the best option for the partcular instance
+     */
     public String determineOptimalItemsForKnapsackProblem(){
         if(mBestNode == null){
             return "Error, no best node found";

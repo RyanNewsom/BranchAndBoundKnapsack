@@ -6,12 +6,13 @@ import java.util.ArrayList;
  * A node is a possible choice for the 0-1 knapsack problem
  */
 public class Node {
-    private int mMaximumPossibleProfit;
-    private int mMaximumPossibleWeight;
     private ArrayList<Integer> mItemsUsed;
-    private int mProfit;
     private Node mLeftChild;
     private Node mRightChild;
+    private int mMaximumPossibleProfit;
+    private int mMaximumPossibleWeight;
+    private int mProfit;
+
 
     public int getMaximumPossibleProfit() {
         return mMaximumPossibleProfit;
