@@ -1,6 +1,8 @@
 package com.kylefrisbie.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -80,7 +82,7 @@ public class Knapsack {
     }
 
     protected void seeWhoToExploreNext(){
-        mPossibleNodesForExploration.sort(new Comparator<Node>() {
+        Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
                 return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? 1 : -1;
