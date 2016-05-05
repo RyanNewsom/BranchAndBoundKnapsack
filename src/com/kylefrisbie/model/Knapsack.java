@@ -12,7 +12,7 @@ public class Knapsack {
     private ArrayList<Node> mNodes = new ArrayList<>();
     protected ArrayList<Node> mPossibleNodesForExploration = new ArrayList<>();
     private ArrayList<Item> mItems = new ArrayList<>();
-    private Node mBestNode;
+    protected Node mBestNode;
     private int mMaximumWeightForSack;
 
     /**
@@ -85,7 +85,7 @@ public class Knapsack {
         Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? 1 : -1;
+                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
             }
         });
         mBestNode = mPossibleNodesForExploration.remove(0);
