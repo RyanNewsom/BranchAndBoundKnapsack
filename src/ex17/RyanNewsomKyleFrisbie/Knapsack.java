@@ -61,12 +61,12 @@ public class Knapsack {
         //Check the nodes restrictions in terms of who it can/can't use
         //to use
         //return that value
-        ArrayList<Item> itemsWeCanUse = mItems;
-        ArrayList<Item> itemsNotAvailableForUse = node.getItemsNotAvailableForUse();
-        int accumulatedHypotheticalWeight = node.getActualWeight();
+        ArrayList<Item> itemsWeCanUse = new ArrayList<>();
+        int accumulatedHypotheticalWeight = 0;
         double maximumPossibleProfit = 0;
 
-        itemsWeCanUse.removeAll(itemsNotAvailableForUse);
+        itemsWeCanUse.addAll(mItems);
+        itemsWeCanUse.removeAll(node.getItemsNotAvailableForUse());
         //Look at the list of items and determine the highest profit using the items we are allowed
         for (int i = 0; i < itemsWeCanUse.size(); i++) {
             Item item = itemsWeCanUse.get(i);
@@ -104,7 +104,8 @@ public class Knapsack {
      * @return - the next item to use for the node
      */
     protected Item getNextItemToUse(Node node) {
-        ArrayList<Item> possibleItems = mItems;
+        ArrayList<Item> possibleItems = new ArrayList<>();
+        possibleItems.addAll(mItems);
         possibleItems.removeAll(node.getItemsUsed());
         possibleItems.removeAll(node.getItemsNotAvailableForUse());
         if (possibleItems.size() == 0) {
@@ -164,11 +165,19 @@ public class Knapsack {
      * @return - true if children were created, false if there's no more children to be created
      */
     protected void createChildren(Node node) {
-        node.setRightChild(createRightNode(node));
+        Node rightChild = createRightNode(node);
+        if(rightChild == null) {
+            return;
+        }
+
+        node.setRightChild(rightChild);
         node.setLeftChild(createLeftNode(node));
 
+        // only add the right child if another item doesn't make it too heavy
+        if (rightChild.getActualWeight() < mMaximumWeightForSack) {
+            mPossibleNodesForExploration.add(node.getRightChild());
+        }
         mPossibleNodesForExploration.add(node.getLeftChild());
-        mPossibleNodesForExploration.add(node.getRightChild());
     }
 
     protected void pruneNodes() {
@@ -181,7 +190,7 @@ public class Knapsack {
         }
         ArrayList<Node> nodesNotPruned = (ArrayList<Node>) mPossibleNodesForExploration.clone();
         for (int i = 0; i < mPossibleNodesForExploration.size(); i++) {
-            if (highestActualProfit.getMaximumPossibleProfit() >
+            if (highestActualProfit.getActualProfit() >
                     mPossibleNodesForExploration.get(i).getMaximumPossibleProfit()) {
                 nodesNotPruned.remove(mPossibleNodesForExploration.get(i));
             }

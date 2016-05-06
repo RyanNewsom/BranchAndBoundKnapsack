@@ -37,18 +37,20 @@ public class Node implements Cloneable {
         this.mItemsUsed = (ArrayList<Item>) mItemsUsed.clone();
         this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
         this.mMaximumPossibleProfit = mMaximumPossibleProfit;
+        this.mActualProfit = mActualProfit;
+        this.mActualWeight = mActualWeight;
     }
 
     /**
      * Used to construct left child nodes
-     * @param mItemsNotAvailableForUse
      * @param mItemsUsed
+     * @param mItemsNotAvailableForUse
      * @param mActualProfit
      * @param mActualWeight
      */
-    public Node(ArrayList<Item> mItemsNotAvailableForUse, ArrayList<Item> mItemsUsed, int mActualProfit, int mActualWeight) {
-        this.mItemsNotAvailableForUse = mItemsNotAvailableForUse;
-        this.mItemsUsed = mItemsUsed;
+    public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse, int mActualProfit, int mActualWeight) {
+        this.mItemsUsed =  (ArrayList<Item>) mItemsUsed.clone();
+        this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
         this.mActualProfit = mActualProfit;
         this.mActualWeight = mActualWeight;
     }
@@ -123,7 +125,15 @@ public class Node implements Cloneable {
 
     @Override
     public String toString(){
-        return "The highest possible profit is: " + mActualProfit + "Using these items: " + mItemsUsed.toString();
+        StringBuilder itemList = new StringBuilder();
+        for (int i = 0; i < mItemsUsed.size(); i++) {
+            Item currentItem = mItemsUsed.get(i);
+            itemList.append(String.format("%10s%5d%10s%7.2f%10s%5d\n", "Item:", currentItem.getItemId(), "Price: ", currentItem.getPrice(), "Weight:", currentItem.getWeight()));
+        }
+        return "The highest possible profit is: " + mActualProfit +
+                "\nUsing these items:\n" +
+                itemList.toString();
+
     }
 
     @Override
