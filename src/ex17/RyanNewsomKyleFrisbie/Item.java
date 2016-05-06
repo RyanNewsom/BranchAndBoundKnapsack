@@ -1,4 +1,4 @@
-package com.kylefrisbie.model;
+package ex17.RyanNewsomKyleFrisbie;
 
 /**
  * An Item is an available Knapsack item for use
