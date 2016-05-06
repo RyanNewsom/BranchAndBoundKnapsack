@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * Created by Ryan on 4/30/2016.
+ * Testing for the Knapsack class
  */
 public class KnapsackTest {
     private ArrayList<Item> mItemsWeCouldUse = new ArrayList<>();
