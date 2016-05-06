@@ -12,7 +12,7 @@ public class Node implements Cloneable {
     private Node mRightChild;
     private double mMaximumPossibleProfit;
     private int mActualProfit;
-    private int mMaximumPossibleWeight;
+    private int mActualWeight;
 
     protected Node() {
 
@@ -25,24 +25,32 @@ public class Node implements Cloneable {
     }
 
     /**
-     *
+     * Used to construct right child nodes
      * @param mItemsUsed
      * @param mItemsNotAvailableForUse
-     * @param mLeftChild
-     * @param mRightChild
      * @param mMaximumPossibleProfit
      * @param mActualProfit
-     * @param mMaximumPossibleWeight
+     * @param mActualWeight
      */
-    public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse, Node mLeftChild, Node mRightChild,
-                double mMaximumPossibleProfit, int mActualProfit, int mMaximumPossibleWeight) {
+    public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse,
+                double mMaximumPossibleProfit, int mActualProfit, int mActualWeight) {
         this.mItemsUsed = (ArrayList<Item>) mItemsUsed.clone();
         this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
-        this.mLeftChild = mLeftChild;
-        this.mRightChild = mRightChild;
         this.mMaximumPossibleProfit = mMaximumPossibleProfit;
+    }
+
+    /**
+     * Used to construct left child nodes
+     * @param mItemsNotAvailableForUse
+     * @param mItemsUsed
+     * @param mActualProfit
+     * @param mActualWeight
+     */
+    public Node(ArrayList<Item> mItemsNotAvailableForUse, ArrayList<Item> mItemsUsed, int mActualProfit, int mActualWeight) {
+        this.mItemsNotAvailableForUse = mItemsNotAvailableForUse;
+        this.mItemsUsed = mItemsUsed;
         this.mActualProfit = mActualProfit;
-        this.mMaximumPossibleWeight = mMaximumPossibleWeight;
+        this.mActualWeight = mActualWeight;
     }
 
     public double getMaximumPossibleProfit() {
@@ -59,8 +67,8 @@ public class Node implements Cloneable {
 
     public void addItemToUse(Item toUse){
         mItemsUsed.add(toUse);
-        mMaximumPossibleWeight += toUse.getWeight();
-        mMaximumPossibleProfit += toUse.getPrice();
+        mActualWeight += toUse.getWeight();
+        mActualProfit += toUse.getPrice();
     }
 
     public int getActualProfit() {
@@ -75,12 +83,12 @@ public class Node implements Cloneable {
         this.mActualProfit = mProfit;
     }
 
-    public int getMaximumPossibleWeight() {
-        return mMaximumPossibleWeight;
+    public int getActualWeight() {
+        return mActualWeight;
     }
 
-    public void setWeight(int mWeight) {
-        this.mMaximumPossibleWeight = mWeight;
+    public void setActualWeight(int mWeight) {
+        this.mActualWeight = mWeight;
     }
 
     public Node getLeftChild() {
@@ -97,6 +105,10 @@ public class Node implements Cloneable {
 
     public void setRightChild(Node mRightChild) {
         this.mRightChild = mRightChild;
+    }
+
+    public void addItemNotAvailableForUse(Item item) {
+        this.mItemsNotAvailableForUse.add(item);
     }
 
     public ArrayList<Item> getItemsNotAvailableForUse() {
