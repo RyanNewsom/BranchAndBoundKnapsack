@@ -7,8 +7,8 @@ public class Item {
     private int mItemId;
     private int mPrice;
     private int mWeight;
-    private double mpricePerWeight;
     private double mFractionOfItemUsed = 1;
+    private double fractionOfItemUsed;
 
     /**
      * Empty default constructor, not for use
@@ -25,53 +25,31 @@ public class Item {
         mItemId = itemId;
         mPrice = price;
         mWeight = weight;
-        mpricePerWeight = price/weight;
+        int mpricePerWeight = price / weight;
     }
 
     public double getPrice() {
         return mPrice * mFractionOfItemUsed;
     }
 
-    public void setPrice(int mPrice) {
-        this.mPrice = mPrice;
-    }
-
     public int getWeight() {
         return mWeight;
     }
 
-    public void setWeight(int mWeight) {
-        this.mWeight = mWeight;
-    }
-
-    public double getPricePerWeight() {
-        return mpricePerWeight;
-    }
-
-    public void setPricePerWeight(double mpricePerWeight) {
-        this.mpricePerWeight = mpricePerWeight;
-    }
 
     public int getItemId() {
         return mItemId;
     }
 
-    public void setItemId(int mItemId) {
-        this.mItemId = mItemId;
-    }
-
-    public double getFractionOfItemUsed() {
-        return mFractionOfItemUsed;
-    }
-
-    public void setFractionOfItemUsed(double mFractionOfItemUsed) {
-        this.mFractionOfItemUsed = mFractionOfItemUsed;
-    }
 
     @Override
     public boolean equals(Object obj) {
         Item itemToCheck = (Item) obj;
 
         return this.mItemId == itemToCheck.getItemId();
+    }
+
+    public void setFractionOfItemUsed(double fractionOfItemUsed) {
+        this.fractionOfItemUsed = fractionOfItemUsed;
     }
 }

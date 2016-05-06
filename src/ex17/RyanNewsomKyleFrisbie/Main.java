@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Main {
     private static ArrayList<Item> mItems = new ArrayList<>();
     private static int mMaxWeight;
-    private static int mNumberOfItems;//[TODO] remove this if it's not in use @ finish
 
     public static void main(String[] args) {
         //Create a knapsack instance
@@ -35,7 +34,7 @@ public class Main {
             Scanner in = new Scanner(inputStream);
 
             mMaxWeight = Integer.parseInt(in.next());
-            mNumberOfItems = Integer.parseInt(in.next());
+            /*int numberOfItems = */Integer.parseInt(in.next());
             while(in.hasNext()){
                 mItems.add(new Item(itemNumber++, in.nextInt(), in.nextInt()));
             }
