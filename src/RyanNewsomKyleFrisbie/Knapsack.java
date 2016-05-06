@@ -1,18 +1,19 @@
-package com.kylefrisbie.model;
+package ex17.RyanNewsomKyleFrisbie;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 /**
  * This is the instance of the Knapsack problem
+ * To Solve Knapsack Problem with Branch and Bound you...
+ * 1)
+ *
  */
 public class Knapsack {
     private ArrayList<Node> mNodes = new ArrayList<>();
     protected ArrayList<Node> mPossibleNodesForExploration = new ArrayList<>();
     private ArrayList<Item> mItems = new ArrayList<>();
-    protected Node mBestNode;
+    private Node mBestNode;
     private int mMaximumWeightForSack;
 
     /**
@@ -82,10 +83,11 @@ public class Knapsack {
     }
 
     protected void seeWhoToExploreNext(){
-        Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
+        //[TODO] Remove JDK 8 requirement
+        mPossibleNodesForExploration.sort(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
+                return o1.getMaximumPossibleProfit() >= o2.getMaximumPossibleProfit() ? 1 : -1;
             }
         });
         mBestNode = mPossibleNodesForExploration.remove(0);

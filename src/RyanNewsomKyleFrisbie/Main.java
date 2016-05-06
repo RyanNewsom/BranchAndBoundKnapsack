@@ -1,7 +1,4 @@
-package com.kylefrisbie;
-
-import com.kylefrisbie.model.Item;
-import com.kylefrisbie.model.Knapsack;
+package ex17.RyanNewsomKyleFrisbie;
 
 import java.io.File;
 import java.io.FileInputStream;
