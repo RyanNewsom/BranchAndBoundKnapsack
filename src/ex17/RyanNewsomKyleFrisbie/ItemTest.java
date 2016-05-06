@@ -1,4 +1,4 @@
-package RyanNewsomKyleFrisbie;
+package ex17.RyanNewsomKyleFrisbie;
 
 import org.junit.Before;
 import org.junit.Test;
