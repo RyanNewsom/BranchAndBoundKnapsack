@@ -175,7 +175,7 @@ public class Knapsack {
         node.setLeftChild(createLeftNode(node));
 
         // only add the right child if another item doesn't make it too heavy
-        if (rightChild.getActualWeight() < mMaximumWeightForSack) {
+        if (rightChild.getActualWeight() <= mMaximumWeightForSack) {
             mPossibleNodesForExploration.add(node.getRightChild());
         }
         mPossibleNodesForExploration.add(node.getLeftChild());
