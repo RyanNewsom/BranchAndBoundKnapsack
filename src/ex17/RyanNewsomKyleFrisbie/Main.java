@@ -8,10 +8,11 @@ import java.util.Scanner;
 
 /**
  * This program does the Knapsack Problem using the Branch and Bound technique
+ * Pass in your text file as an argument
  */
 public class Main {
-    private static ArrayList<Item> mItems = new ArrayList<>();
-    private static int mMaxWeight;
+    protected static ArrayList<Item> mItems = new ArrayList<>();
+    protected static int mMaxWeight;
 
     public static void main(String[] args) {
         //Create a knapsack instance
@@ -26,7 +27,7 @@ public class Main {
      * Populated the ArrayList of Items and gets the max weight possible for the Sack
      * @param arg - file name
      */
-    private static void takeInUserInput(String arg) {
+    protected static void takeInUserInput(String arg) {
         File file = new File(arg);
         int itemNumber = 1;
         try {
