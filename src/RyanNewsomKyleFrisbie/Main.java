@@ -1,4 +1,4 @@
-package ex17.RyanNewsomKyleFrisbie;
+package RyanNewsomKyleFrisbie;
 
 import java.io.File;
 import java.io.FileInputStream;

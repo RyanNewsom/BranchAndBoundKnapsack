@@ -1,6 +1,7 @@
-package ex17.RyanNewsomKyleFrisbie;
+package RyanNewsomKyleFrisbie;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -13,7 +14,7 @@ public class Knapsack {
     private ArrayList<Node> mNodes = new ArrayList<>();
     protected ArrayList<Node> mPossibleNodesForExploration = new ArrayList<>();
     private ArrayList<Item> mItems = new ArrayList<>();
-    private Node mBestNode;
+    protected Node mBestNode;
     private int mMaximumWeightForSack;
 
     /**
@@ -84,10 +85,10 @@ public class Knapsack {
 
     protected void seeWhoToExploreNext(){
         //[TODO] Remove JDK 8 requirement
-        mPossibleNodesForExploration.sort(new Comparator<Node>() {
+        Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return o1.getMaximumPossibleProfit() >= o2.getMaximumPossibleProfit() ? 1 : -1;
+                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
             }
         });
         mBestNode = mPossibleNodesForExploration.remove(0);

@@ -1,4 +1,4 @@
-package ex17.RyanNewsomKyleFrisbie;
+package RyanNewsomKyleFrisbie;
 
 import java.util.ArrayList;
 

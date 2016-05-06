@@ -1,4 +1,4 @@
-package ex17.RyanNewsomKyleFrisbie;
+package RyanNewsomKyleFrisbie;
 
 /**
  * An Item is an available Knapsack item for use
