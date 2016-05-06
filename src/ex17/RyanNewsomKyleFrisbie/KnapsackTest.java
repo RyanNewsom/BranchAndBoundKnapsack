@@ -55,6 +55,28 @@ public class KnapsackTest {
     }
 
     @Test
+    public void createRightNode() throws Exception {
+        // base case
+        Node rootNode = new Node();
+        rootNode.setMaximumPossibleProfit(mKnapsack.calculateHighestPossibleProfit(rootNode));
+        Node rightChild = mKnapsack.createRightNode(rootNode);
+        assertEquals(115, rightChild.getMaximumPossibleProfit(), 0);
+        assertEquals(40, rightChild.getActualProfit(), 0);
+        assertEquals(2, rightChild.getActualWeight(), 0);
+    }
+
+    @Test
+    public void createLeftNode() throws Exception {
+        // base case
+        Node rootNode = new Node();
+        rootNode.setMaximumPossibleProfit(mKnapsack.calculateHighestPossibleProfit(rootNode));
+        Node leftChild = mKnapsack.createLeftNode(rootNode);
+        assertEquals(82, leftChild.getMaximumPossibleProfit(), 0);
+        assertEquals(0, leftChild.getActualProfit(), 0);
+        assertEquals(0, leftChild.getActualWeight(), 0);
+    }
+
+    @Test
     public void testCreateChildren() throws Exception {
         Node node = new Node();
 
