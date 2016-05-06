@@ -1,6 +1,6 @@
 # Java class files
 *.class
-*build/*
+build/*
 
 # Log Files
 *.log
