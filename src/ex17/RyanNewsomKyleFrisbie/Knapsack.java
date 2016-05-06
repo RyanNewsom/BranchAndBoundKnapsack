@@ -91,7 +91,7 @@ public class Knapsack {
         Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
+                return (o1.getMaximumPossibleProfit() >=  o2.getMaximumPossibleProfit()) ? -1 : 1;
             }
         });
         return mPossibleNodesForExploration.remove(0);

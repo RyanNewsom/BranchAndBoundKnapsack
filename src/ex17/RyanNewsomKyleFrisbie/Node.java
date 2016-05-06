@@ -77,20 +77,8 @@ public class Node implements Cloneable {
         return mActualProfit;
     }
 
-    /**
-     * Set's the profit for the node
-     * @param mProfit - this is the actual profit for the node
-     */
-    public void setActualProfit(int mProfit) {
-        this.mActualProfit = mProfit;
-    }
-
     public int getActualWeight() {
         return mActualWeight;
-    }
-
-    public void setActualWeight(int mWeight) {
-        this.mActualWeight = mWeight;
     }
 
     public Node getLeftChild() {
