@@ -39,21 +39,22 @@ public class Knapsack {
      *
      * @return - the best option for the particular instance
      */
-    public String determineOptimalItemsForKnapsackProblem() {
+    public Node determineOptimalStrategyForKnapsackProblem() {
         Node bestNode = null; //The node with the highest possible profit
-
+        Logger.beginExploration();
         while (mPossibleNodesForExploration.size() > 0) {
             bestNode = seeWhoToExploreNext();
             createChildren(bestNode);
+            Logger.exploring(bestNode);
             if (mPossibleNodesForExploration.size() == 0) {
                 break;
             }
             pruneNodes();
         }
         if (bestNode == null) {
-            return "Error, no best node found";
+            return null; //"Error, no best node found";
         } else {
-            return bestNode.toString();
+            return bestNode;
         }
     }
 
@@ -91,7 +92,7 @@ public class Knapsack {
         Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
+                return (o1.getMaximumPossibleProfit() >=  o2.getMaximumPossibleProfit()) ? -1 : 1;
             }
         });
         return mPossibleNodesForExploration.remove(0);
@@ -174,7 +175,7 @@ public class Knapsack {
         node.setLeftChild(createLeftNode(node));
 
         // only add the right child if another item doesn't make it too heavy
-        if (rightChild.getActualWeight() < mMaximumWeightForSack) {
+        if (rightChild.getActualWeight() <= mMaximumWeightForSack) {
             mPossibleNodesForExploration.add(node.getRightChild());
         }
         mPossibleNodesForExploration.add(node.getLeftChild());
@@ -192,7 +193,9 @@ public class Knapsack {
         for (int i = 0; i < mPossibleNodesForExploration.size(); i++) {
             if (highestActualProfit.getActualProfit() >
                     mPossibleNodesForExploration.get(i).getMaximumPossibleProfit()) {
-                nodesNotPruned.remove(mPossibleNodesForExploration.get(i));
+                Node nodeToPrune = mPossibleNodesForExploration.get(i);
+                Logger.prunedNode(nodeToPrune);
+                nodesNotPruned.remove(nodeToPrune);
             }
 
         }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * A node is a possible choice for the 0-1 knapsack problem
  */
 public class Node implements Cloneable {
+    private static int nodesCreated = 1;
+    private int mId;
     private ArrayList<Item> mItemsUsed = new ArrayList<>();
     private ArrayList<Item> mItemsNotAvailableForUse = new ArrayList<>();
     private Node mLeftChild;
@@ -19,7 +21,7 @@ public class Node implements Cloneable {
     }
 
     public Node(int actualProfit, int maxProfit) {
-
+        mId = nodesCreated++;
         mActualProfit = actualProfit;
         mMaximumPossibleProfit = maxProfit;
     }
@@ -34,6 +36,7 @@ public class Node implements Cloneable {
      */
     public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse,
                 double mMaximumPossibleProfit, int mActualProfit, int mActualWeight) {
+        mId = nodesCreated++;
         this.mItemsUsed = (ArrayList<Item>) mItemsUsed.clone();
         this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
         this.mMaximumPossibleProfit = mMaximumPossibleProfit;
@@ -49,6 +52,7 @@ public class Node implements Cloneable {
      * @param mActualWeight
      */
     public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse, int mActualProfit, int mActualWeight) {
+        mId = nodesCreated++;
         this.mItemsUsed =  (ArrayList<Item>) mItemsUsed.clone();
         this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
         this.mActualProfit = mActualProfit;
@@ -77,20 +81,8 @@ public class Node implements Cloneable {
         return mActualProfit;
     }
 
-    /**
-     * Set's the profit for the node
-     * @param mProfit - this is the actual profit for the node
-     */
-    public void setActualProfit(int mProfit) {
-        this.mActualProfit = mProfit;
-    }
-
     public int getActualWeight() {
         return mActualWeight;
-    }
-
-    public void setActualWeight(int mWeight) {
-        this.mActualWeight = mWeight;
     }
 
     public Node getLeftChild() {
@@ -121,16 +113,19 @@ public class Node implements Cloneable {
         this.mItemsNotAvailableForUse = mItemsNotAvailableForUse;
     }
 
-
+    public int getId(){
+        return mId;
+    }
 
     @Override
     public String toString(){
         StringBuilder itemList = new StringBuilder();
+        String prefix = "<Node " + mId + ": " + "profit: " + mActualProfit + " weight: " + mActualWeight + ">";
         for (int i = 0; i < mItemsUsed.size(); i++) {
             Item currentItem = mItemsUsed.get(i);
             itemList.append(String.format("%10s%5d%10s%7.2f%10s%5d\n", "Item:", currentItem.getItemId(), "Price: ", currentItem.getPrice(), "Weight:", currentItem.getWeight()));
         }
-        return "The highest possible profit is: " + mActualProfit +
+        return prefix + "\nThe bound is: " + mMaximumPossibleProfit +
                 "\nUsing these items:\n" +
                 itemList.toString();
 
@@ -144,5 +139,16 @@ public class Node implements Cloneable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Node objec = (Node) obj;
+
+        return     mItemsUsed.equals(objec.mItemsUsed)
+                && mItemsNotAvailableForUse.equals(objec.mItemsNotAvailableForUse)
+                && this.mActualProfit == objec.mActualProfit
+                && this.mActualWeight == objec.mActualWeight
+                && this.mMaximumPossibleProfit == objec.mMaximumPossibleProfit;
     }
 }
