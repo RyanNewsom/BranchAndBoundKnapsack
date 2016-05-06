@@ -45,4 +45,9 @@ public class Item {
 
         return this.mItemId == itemToCheck.getItemId();
     }
+
+    @Override
+    public String toString() {
+        return mItemId + ": " + mPrice + " " + mWeight;
+    }
 }

@@ -15,15 +15,23 @@ public class Main {
     protected static int mMaxWeight;
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String fileName;
         //Create a knapsack instance
         //ask knapsack to give me the optimal decision
-        takeInUserInput(args[0]);
+        if(args[0] == null){
+            System.out.println("Please enter the name of the data file you wish to import");
+            fileName = in.next();
+            takeInUserInput(fileName);
+        } else {
+            takeInUserInput(args[0]);
+        }
         Knapsack knapsack = new Knapsack(mMaxWeight, mItems);
         Node bestNodeToUse = knapsack.determineOptimalStrategyForKnapsackProblem();
         if(bestNodeToUse == null){
             System.out.println("Error, no best node found");
         } else {
-            System.out.println(bestNodeToUse.toString());
+            System.out.println("The best node to use is: \n" + bestNodeToUse.toString());
         }
     }
 
@@ -41,8 +49,10 @@ public class Main {
             mMaxWeight = Integer.parseInt(in.next());
             /*int numberOfItems = */Integer.parseInt(in.next());
             while(in.hasNext()){
-                mItems.add(new Item(itemNumber++, in.nextInt(), in.nextInt()));
+                Item newItem = new Item(itemNumber++, in.nextInt(), in.nextInt());
+                mItems.add(newItem);
             }
+            Logger.printInitialInfo(mMaxWeight, mItems);
         } catch (FileNotFoundException e) {
             System.out.println("File was not found!!");
         } catch (NumberFormatException nfe){

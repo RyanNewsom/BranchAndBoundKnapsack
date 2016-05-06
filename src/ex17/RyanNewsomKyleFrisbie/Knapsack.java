@@ -41,10 +41,11 @@ public class Knapsack {
      */
     public Node determineOptimalStrategyForKnapsackProblem() {
         Node bestNode = null; //The node with the highest possible profit
-
+        Logger.beginExploration();
         while (mPossibleNodesForExploration.size() > 0) {
             bestNode = seeWhoToExploreNext();
             createChildren(bestNode);
+            Logger.exploring(bestNode);
             if (mPossibleNodesForExploration.size() == 0) {
                 break;
             }
@@ -174,7 +175,7 @@ public class Knapsack {
         node.setLeftChild(createLeftNode(node));
 
         // only add the right child if another item doesn't make it too heavy
-        if (rightChild.getActualWeight() < mMaximumWeightForSack) {
+        if (rightChild.getActualWeight() <= mMaximumWeightForSack) {
             mPossibleNodesForExploration.add(node.getRightChild());
         }
         mPossibleNodesForExploration.add(node.getLeftChild());
@@ -192,7 +193,9 @@ public class Knapsack {
         for (int i = 0; i < mPossibleNodesForExploration.size(); i++) {
             if (highestActualProfit.getActualProfit() >
                     mPossibleNodesForExploration.get(i).getMaximumPossibleProfit()) {
-                nodesNotPruned.remove(mPossibleNodesForExploration.get(i));
+                Node nodeToPrune = mPossibleNodesForExploration.get(i);
+                Logger.prunedNode(nodeToPrune);
+                nodesNotPruned.remove(nodeToPrune);
             }
 
         }
