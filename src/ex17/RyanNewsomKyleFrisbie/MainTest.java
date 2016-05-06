@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class MainTest {
     private ArrayList<Item> mItems = new ArrayList<>();
+
     @Test
     public void testTakeInUserInput() throws Exception {
         mItems.clear();

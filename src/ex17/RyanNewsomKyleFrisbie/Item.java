@@ -5,9 +5,9 @@ package ex17.RyanNewsomKyleFrisbie;
  */
 public class Item {
     private int mItemId;
-    private int mPrice;
-    private int mWeight;
-    private double mFractionOfItemUsed = 1;
+    protected int mPrice;
+    protected int mWeight;
+    protected double mFractionOfItemUsed = 1;
     /**
      * Empty default constructor, not for use
      */
