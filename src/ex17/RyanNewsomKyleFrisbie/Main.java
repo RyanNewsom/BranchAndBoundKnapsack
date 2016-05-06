@@ -19,8 +19,12 @@ public class Main {
         //ask knapsack to give me the optimal decision
         takeInUserInput(args[0]);
         Knapsack knapsack = new Knapsack(mMaxWeight, mItems);
-        String result = knapsack.determineOptimalItemsForKnapsackProblem();
-        System.out.println(result);
+        Node bestNodeToUse = knapsack.determineOptimalStrategyForKnapsackProblem();
+        if(bestNodeToUse == null){
+            System.out.println("Error, no best node found");
+        } else {
+            System.out.println(bestNodeToUse.toString());
+        }
     }
 
     /**

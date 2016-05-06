@@ -15,7 +15,7 @@ public class MainTest {
     public void testTakeInUserInput() throws Exception {
         mItems.clear();
         mItems.add(new Item(1, 40, 2));
-        mItems.add(new Item(2,30,5));
+        mItems.add(new Item(2, 30, 5));
         mItems.add(new Item(3, 50, 10));
         mItems.add(new Item(4, 10, 5));
         Main.takeInUserInput("example.txt");

@@ -133,4 +133,15 @@ public class Node implements Cloneable {
         }
         return null;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Node objec = (Node) obj;
+
+        return     mItemsUsed.equals(objec.mItemsUsed)
+                && mItemsNotAvailableForUse.equals(objec.mItemsNotAvailableForUse)
+                && this.mActualProfit == objec.mActualProfit
+                && this.mActualWeight == objec.mActualWeight
+                && this.mMaximumPossibleProfit == objec.mMaximumPossibleProfit;
+    }
 }
