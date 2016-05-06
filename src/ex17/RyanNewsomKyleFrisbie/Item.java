@@ -8,8 +8,6 @@ public class Item {
     private int mPrice;
     private int mWeight;
     private double mFractionOfItemUsed = 1;
-    private double fractionOfItemUsed;
-
     /**
      * Empty default constructor, not for use
      */
@@ -25,7 +23,6 @@ public class Item {
         mItemId = itemId;
         mPrice = price;
         mWeight = weight;
-        int mpricePerWeight = price / weight;
     }
 
     public double getPrice() {
@@ -47,9 +44,5 @@ public class Item {
         Item itemToCheck = (Item) obj;
 
         return this.mItemId == itemToCheck.getItemId();
-    }
-
-    public void setFractionOfItemUsed(double fractionOfItemUsed) {
-        this.fractionOfItemUsed = fractionOfItemUsed;
     }
 }
