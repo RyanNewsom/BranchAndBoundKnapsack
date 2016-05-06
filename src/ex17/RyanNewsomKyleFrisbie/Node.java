@@ -11,16 +11,38 @@ public class Node implements Cloneable {
     private Node mLeftChild;
     private Node mRightChild;
     private double mMaximumPossibleProfit;
-    private int mProfit;
+    private int mActualProfit;
     private int mMaximumPossibleWeight;
 
     protected Node() {
 
     }
 
-    protected Node(int profit, int maxProfit) {
-        mProfit = profit;
+    public Node(int actualProfit, int maxProfit) {
+
+        mActualProfit = actualProfit;
         mMaximumPossibleProfit = maxProfit;
+    }
+
+    /**
+     *
+     * @param mItemsUsed
+     * @param mItemsNotAvailableForUse
+     * @param mLeftChild
+     * @param mRightChild
+     * @param mMaximumPossibleProfit
+     * @param mActualProfit
+     * @param mMaximumPossibleWeight
+     */
+    public Node(ArrayList<Item> mItemsUsed, ArrayList<Item> mItemsNotAvailableForUse, Node mLeftChild, Node mRightChild,
+                double mMaximumPossibleProfit, int mActualProfit, int mMaximumPossibleWeight) {
+        this.mItemsUsed = (ArrayList<Item>) mItemsUsed.clone();
+        this.mItemsNotAvailableForUse = (ArrayList<Item>) mItemsNotAvailableForUse.clone();
+        this.mLeftChild = mLeftChild;
+        this.mRightChild = mRightChild;
+        this.mMaximumPossibleProfit = mMaximumPossibleProfit;
+        this.mActualProfit = mActualProfit;
+        this.mMaximumPossibleWeight = mMaximumPossibleWeight;
     }
 
     public double getMaximumPossibleProfit() {
@@ -41,12 +63,16 @@ public class Node implements Cloneable {
         mMaximumPossibleProfit += toUse.getPrice();
     }
 
-    public int getProfit() {
-        return mProfit;
+    public int getActualProfit() {
+        return mActualProfit;
     }
 
-    public void setProfit(int mProfit) {
-        this.mProfit = mProfit;
+    /**
+     * Set's the profit for the node
+     * @param mProfit - this is the actual profit for the node
+     */
+    public void setActualProfit(int mProfit) {
+        this.mActualProfit = mProfit;
     }
 
     public int getMaximumPossibleWeight() {
@@ -81,9 +107,11 @@ public class Node implements Cloneable {
         this.mItemsNotAvailableForUse = mItemsNotAvailableForUse;
     }
 
+
+
     @Override
     public String toString(){
-        return "The highest possible profit is: " + mProfit + "Using these items: " + mItemsUsed.toString();
+        return "The highest possible profit is: " + mActualProfit + "Using these items: " + mItemsUsed.toString();
     }
 
     @Override
