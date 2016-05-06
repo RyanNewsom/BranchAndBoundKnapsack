@@ -34,8 +34,7 @@ public class KnapsackTest {
     @Test
     public void testDetermineOptimalItemsForKnapsackProblem() throws Exception {
         mKnapsack.mPossibleNodesForExploration = mTestNodes;
-        mKnapsack.seeWhoToExploreNext();
-        double result = mKnapsack.mBestNode.getMaximumPossibleProfit();
+        double result = mKnapsack.seeWhoToExploreNext().getMaximumPossibleProfit();
         assertEquals(115, result, 0);
     }
 
@@ -51,8 +50,7 @@ public class KnapsackTest {
     @Test
     public void testSeeWhoToExploreNext() throws Exception {
         mKnapsack.mPossibleNodesForExploration = mTestNodes;
-        mKnapsack.seeWhoToExploreNext();
-        double result = mKnapsack.mBestNode.getMaximumPossibleProfit();
+        double result = mKnapsack.seeWhoToExploreNext().getMaximumPossibleProfit();
         assertEquals(115, result, 0);
     }
 
@@ -68,9 +66,10 @@ public class KnapsackTest {
 
     @Test
     public void testPruneNodes() throws Exception {
+        int expectedMaximumPossibleProfit = 115;
         mKnapsack.mPossibleNodesForExploration = mTestNodes;
         mKnapsack.pruneNodes();
         assertTrue((mKnapsack.mPossibleNodesForExploration.size() == 1) &&
-        (mKnapsack.mPossibleNodesForExploration.get(0).getProfit() == 100));
+                (mKnapsack.mPossibleNodesForExploration.get(0).getMaximumPossibleProfit() == expectedMaximumPossibleProfit));
     }
 }
