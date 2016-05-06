@@ -39,7 +39,7 @@ public class Knapsack {
      *
      * @return - the best option for the particular instance
      */
-    public String determineOptimalItemsForKnapsackProblem() {
+    public Node determineOptimalStrategyForKnapsackProblem() {
         Node bestNode = null; //The node with the highest possible profit
 
         while (mPossibleNodesForExploration.size() > 0) {
@@ -51,9 +51,9 @@ public class Knapsack {
             pruneNodes();
         }
         if (bestNode == null) {
-            return "Error, no best node found";
+            return null; //"Error, no best node found";
         } else {
-            return bestNode.toString();
+            return bestNode;
         }
     }
 
@@ -91,7 +91,7 @@ public class Knapsack {
         Collections.sort(mPossibleNodesForExploration, new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return (((Node) o1).getMaximumPossibleProfit() >= ((Node) o2).getMaximumPossibleProfit()) ? -1 : 1;
+                return (o1.getMaximumPossibleProfit() >=  o2.getMaximumPossibleProfit()) ? -1 : 1;
             }
         });
         return mPossibleNodesForExploration.remove(0);

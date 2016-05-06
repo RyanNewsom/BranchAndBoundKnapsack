@@ -1,5 +1,6 @@
 package ex17.RyanNewsomKyleFrisbie;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * Created by Ryan on 4/30/2016.
+ * Testing for the Knapsack class
  */
 public class KnapsackTest {
     private ArrayList<Item> mItemsWeCouldUse = new ArrayList<>();
@@ -33,9 +34,32 @@ public class KnapsackTest {
 
     @Test
     public void testDetermineOptimalItemsForKnapsackProblem() throws Exception {
-        mKnapsack.mPossibleNodesForExploration = mTestNodes;
-        double result = mKnapsack.seeWhoToExploreNext().getMaximumPossibleProfit();
-        assertEquals(115, result, 0);
+        ArrayList<Item> itemsUsed = new ArrayList<>();
+        itemsUsed.add(new Item(1, 40, 2));
+        itemsUsed.add(new Item(3, 50, 10));
+
+        ArrayList<Item> itemsNotAvailableForUse = new ArrayList<>();
+        itemsNotAvailableForUse.add(new Item(2, 30, 5));
+        itemsNotAvailableForUse.add(new Item(4, 10, 5));
+
+        double maximumPossibleProfit = 90.0;
+        int actualProfit = 90;
+        int actualWeight = 12;
+
+
+        Node optimalExpected = new Node(itemsUsed, itemsNotAvailableForUse,
+        maximumPossibleProfit, actualProfit, actualWeight);
+
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(new Item(1, 40, 2));
+        items.add(new Item(2, 30, 5));
+        items.add(new Item(3, 50, 10));
+        items.add(new Item(4, 10, 5));
+
+        mKnapsack = new Knapsack(16, items);
+        Node optimalActual = mKnapsack.determineOptimalStrategyForKnapsackProblem();
+
+        Assert.assertTrue(optimalExpected.equals(optimalActual));
     }
 
     @Test

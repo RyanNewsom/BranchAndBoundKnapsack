@@ -8,26 +8,30 @@ import java.util.Scanner;
 
 /**
  * This program does the Knapsack Problem using the Branch and Bound technique
+ * Pass in your text file as an argument
  */
 public class Main {
-    private static ArrayList<Item> mItems = new ArrayList<>();
-    private static int mMaxWeight;
-    private static int mNumberOfItems;//[TODO] remove this if it's not in use @ finish
+    protected static ArrayList<Item> mItems = new ArrayList<>();
+    protected static int mMaxWeight;
 
     public static void main(String[] args) {
         //Create a knapsack instance
         //ask knapsack to give me the optimal decision
         takeInUserInput(args[0]);
         Knapsack knapsack = new Knapsack(mMaxWeight, mItems);
-        String result = knapsack.determineOptimalItemsForKnapsackProblem();
-        System.out.println(result);
+        Node bestNodeToUse = knapsack.determineOptimalStrategyForKnapsackProblem();
+        if(bestNodeToUse == null){
+            System.out.println("Error, no best node found");
+        } else {
+            System.out.println(bestNodeToUse.toString());
+        }
     }
 
     /**
      * Populated the ArrayList of Items and gets the max weight possible for the Sack
      * @param arg - file name
      */
-    private static void takeInUserInput(String arg) {
+    protected static void takeInUserInput(String arg) {
         File file = new File(arg);
         int itemNumber = 1;
         try {
@@ -35,7 +39,7 @@ public class Main {
             Scanner in = new Scanner(inputStream);
 
             mMaxWeight = Integer.parseInt(in.next());
-            mNumberOfItems = Integer.parseInt(in.next());
+            /*int numberOfItems = */Integer.parseInt(in.next());
             while(in.hasNext()){
                 mItems.add(new Item(itemNumber++, in.nextInt(), in.nextInt()));
             }

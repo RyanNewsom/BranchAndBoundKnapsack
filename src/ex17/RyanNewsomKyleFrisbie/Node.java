@@ -77,20 +77,8 @@ public class Node implements Cloneable {
         return mActualProfit;
     }
 
-    /**
-     * Set's the profit for the node
-     * @param mProfit - this is the actual profit for the node
-     */
-    public void setActualProfit(int mProfit) {
-        this.mActualProfit = mProfit;
-    }
-
     public int getActualWeight() {
         return mActualWeight;
-    }
-
-    public void setActualWeight(int mWeight) {
-        this.mActualWeight = mWeight;
     }
 
     public Node getLeftChild() {
@@ -144,5 +132,16 @@ public class Node implements Cloneable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Node objec = (Node) obj;
+
+        return     mItemsUsed.equals(objec.mItemsUsed)
+                && mItemsNotAvailableForUse.equals(objec.mItemsNotAvailableForUse)
+                && this.mActualProfit == objec.mActualProfit
+                && this.mActualWeight == objec.mActualWeight
+                && this.mMaximumPossibleProfit == objec.mMaximumPossibleProfit;
     }
 }
