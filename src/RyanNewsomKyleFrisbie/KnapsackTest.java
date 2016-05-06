@@ -1,4 +1,4 @@
-package com.kylefrisbie.model;
+package ex17.RyanNewsomKyleFrisbie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,10 +47,7 @@ public class KnapsackTest {
 
     @Test
     public void testSeeWhoToExploreNext() throws Exception {
-        mKnapsack.mPossibleNodesForExploration = mTestNodes;
-        mKnapsack.seeWhoToExploreNext();
-        double result = mKnapsack.mBestNode.getMaximumPossibleProfit();
-        assertEquals(115, result, 0);
+
     }
 
     @Test

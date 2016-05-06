@@ -1,4 +1,4 @@
-package com.kylefrisbie.model;
+package ex17.RyanNewsomKyleFrisbie;
 
 import java.util.ArrayList;
 
